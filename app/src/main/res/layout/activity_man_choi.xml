@@ -7,11 +7,12 @@
     android:background="@drawable/manchoi"
     android:orientation="vertical"
     tools:context=".ManChoi"
-    android:weightSum="5">
+    android:id="@+id/lele">
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="1"
+        android:id="@+id/sttcauhoi"
         android:paddingTop="3dp"
         android:textStyle="bold"
         android:textColor="#F44336"
@@ -37,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="250"
+            android:id="@+id/ruby"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textSize="25dp"
