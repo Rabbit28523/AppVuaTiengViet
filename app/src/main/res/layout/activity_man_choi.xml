@@ -123,4 +123,9 @@
             android:layout_width="50dp"
             android:layout_height="55dp"/>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" />
 </LinearLayout>
