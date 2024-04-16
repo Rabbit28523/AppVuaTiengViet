@@ -3,6 +3,7 @@ package com.example.appvuatiengviet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,7 +67,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
     RecyclerView ochu,cautraloi;
     CauHoi cauHoi;
     TextView ruby,sttcauhoi;
-    ImageView chiase,back,help;
+    ImageView chiase,help;
     LinearLayout lele;
     MediaPlayer mediaPlayer,mediaPlayer2;
 
@@ -75,6 +78,15 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Ẩn thanh tiêu đề
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // Đặt cờ cho cửa sổ
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // Ẩn thanh công cụ (navigation bar)
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
         setContentView(R.layout.activity_man_choi);
         cauhoi = findViewById(R.id.cauhoi);
         ochu = findViewById(R.id.ochu);
@@ -82,7 +94,6 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         csdl = new CSDL(ManChoi.this);
         lele=findViewById(R.id.lele);
         chiase=findViewById(R.id.chiase);
-        back=findViewById(R.id.back);
         help=findViewById(R.id.trogiup);
         adContainerView = findViewById(R.id.layoutAd);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -129,14 +140,6 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
                 }
             });
         }
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mediaPlayer2.start();
-                //đóng activity
-                ManChoi.this.finish();
-            }
-        });
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,7 +251,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
     @Override
     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
         Toast.makeText(this, "Nhận thưởng thành công", Toast.LENGTH_SHORT).show();
-        csdl.UpdateRuby(ManChoi.this,25);
+        csdl.UpdateRuby(ManChoi.this,5);
         ruby.setText(String.valueOf(String.valueOf(csdl.HienRuby(ManChoi.this))));
     }
 
@@ -411,13 +414,13 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             myAnswer.set(vitrioda,ktu);
 
             // set vị trí vừa trợ giúp trong mảng trợ giúp thành 1 (0- chưa trợ giúp; 1- đã trợ giúp)
-            trogiup.set(KiemTraViTri_trogiup(),1);
+            trogiup.set(vitrioda,1);
 
             // tìm vị trí của ktu trong listdapan
             int vittriDA=KiemTraViTri_dapAn(ktu);
 
             // set vị trí của từ đó trong list đáp án  vào mảng vị trí ở đáp án
-            vitrioDapAn.set(KiemTraViTri_trogiup(),vittriDA);
+            vitrioDapAn.set(vitrioda,vittriDA);
 
             System.out.println(ktu);
 //            Toast.makeText(this, "vị trí: "+vittriDA, Toast.LENGTH_SHORT).show();
@@ -608,7 +611,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             }
             else {
 
-                Toast.makeText(this, "lew lew gà", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sai đáp án", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -659,7 +662,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             public void onDismiss(DialogInterface dialogInterface) {
 //                 Thực hiện cập nhật CSDL và tải lại trang
                 csdl.Update(ManChoi.this,cauHoi.getId());
-                csdl.UpdateRuby(ManChoi.this,25);
+                csdl.UpdateRuby(ManChoi.this,5);
                 LoadCauHoi();
             }
         });

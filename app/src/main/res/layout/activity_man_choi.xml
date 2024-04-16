@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/manchoi"
-    android:orientation="vertical"
-    tools:context=".ManChoi"
-    android:id="@+id/lele">
+    tools:context=".ManChoi">
+    <LinearLayout
+        android:layout_above="@+id/layoutAd"
+        android:id="@+id/lele"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/nenmanchoi">
     <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
         android:text="1"
         android:id="@+id/sttcauhoi"
-        android:paddingTop="3dp"
+        android:paddingTop="7dp"
         android:textStyle="bold"
         android:textColor="#F44336"
         android:textSize="30dp"
@@ -21,20 +25,16 @@
         android:textAlignment="center"
         android:layout_marginBottom="-70dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/botron"/>
+        android:background="@drawable/khunglevel"/>
     <LinearLayout
-        android:background="@drawable/tien"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/khungtien"
         android:layout_marginLeft="250dp"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
         android:orientation="horizontal">
-        <ImageView
-            android:background="@drawable/money"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
         <TextView
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="250"
@@ -44,88 +44,66 @@
             android:textSize="25dp"
             android:textColor="#FFC107"/>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sắp xếp các từ sau:"
-        android:layout_gravity="center"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="-85dp"
-        android:textStyle="bold"/>
-
     <LinearLayout
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="10dp"
         android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
         android:orientation="horizontal"
         android:background="@drawable/khungchu" >
         <TextView
             android:id="@+id/cauhoi"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:text="C/h/ị/h/c/t/ủ"
-            android:textColor="@color/black"
+            android:textColor="#E6780D"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
             android:textSize="25dp"/>
     </LinearLayout>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:background="@drawable/contho"
-        android:layout_marginTop="-150dp"
-        android:layout_marginLeft="20dp"/>
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:id="@+id/ochu"
         android:layout_width="wrap_content"
         android:layout_weight="1"
-        android:layout_height="wrap_content"/>
+        android:layout_height="100dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/chiase"
+            android:background="@drawable/iconshop"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+        <ImageView
+            android:id="@+id/trogiup"
+            android:background="@drawable/icontrogiup"
+            android:layout_marginLeft="210dp"
+            android:layout_width="80dp"
+            android:layout_height="85dp"/>
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:id="@+id/cautraloi"
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/back"
-            android:src="@drawable/back"
-            android:padding="11dp"
-            android:background="@drawable/button6"
-            android:layout_marginRight="15dp"
-            android:layout_width="50dp"
-            android:layout_height="55dp"/>
-        <ImageView
-            android:id="@+id/trogiup"
-            android:padding="11dp"
-            android:src="@drawable/question"
-            android:background="@drawable/button5"
-            android:layout_width="50dp"
-            android:layout_height="55dp"/>
-        <ImageView
-            android:id="@+id/chiase"
-            android:src="@drawable/share"
-            android:padding="11dp"
-            android:background="@drawable/button4"
-            android:layout_marginLeft="15dp"
-            android:layout_width="50dp"
-            android:layout_height="55dp"/>
+        android:layout_height="200dp"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_alignParentBottom="true"
         android:id="@+id/layoutAd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" />
-</LinearLayout>
+        android:orientation="horizontal"/>
+</RelativeLayout>

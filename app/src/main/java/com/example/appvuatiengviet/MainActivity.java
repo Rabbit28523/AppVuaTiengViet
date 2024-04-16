@@ -26,7 +26,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     CSDL csdl;
     Button choiNgay,bangXh,thoat,choilai;
-    ImageView amLuong,setting,chiaSe;
+    ImageView shop,setting,chiaSe;
     TextView tien;
     MediaPlayer mediaPlayer,mediaPlayer2;
     static boolean NhacNen ,AmLuong;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         choiNgay = findViewById(R.id.choingay);
         bangXh = findViewById(R.id.bxh);
         thoat = findViewById(R.id.thoat);
-        amLuong = findViewById(R.id.amluong);
+        shop = findViewById(R.id.shop);
         setting = findViewById(R.id.setting);
         chiaSe = findViewById(R.id.chiase);
         tien = findViewById(R.id.tien);
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         choilai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer2.start();
+//                mediaPlayer2.start();
                 showConfirmationDialog();
             }
         });
@@ -204,11 +204,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(progress!=0){
-                    nhacback12.setImageResource(R.drawable.nhacnen);
+                    nhacback12.setImageResource(R.drawable.icon_loa);
                     NhacNen=true;
                 }
                 else {
-                    nhacback12.setImageResource(R.drawable.matnhacnen);
+                    nhacback12.setImageResource(R.drawable.icon_tatloa);
                     NhacNen=false;
                 }
                 volumn1 = (float) (1 - (Math.log(100 - progress) / Math.log(100)));
@@ -226,16 +226,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-        //tiếng xuân bắc
         volumeSeekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(progress!=0){
-                    nhacXB12.setImageResource(R.drawable.volume);
+                    nhacXB12.setImageResource(R.drawable.icon_mic);
                     AmLuong=true;
                 }
                 else {
-                    nhacXB12.setImageResource(R.drawable.matamthanh);
+                    nhacXB12.setImageResource(R.drawable.icon_tatmic);
                     AmLuong=false;
                 }
                 volumn2 = (float) (1 - (Math.log(100 - progress) / Math.log(100)));
