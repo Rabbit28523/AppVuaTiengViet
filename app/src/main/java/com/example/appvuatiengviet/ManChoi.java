@@ -3,10 +3,10 @@ package com.example.appvuatiengviet;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,9 +22,12 @@ import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,7 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
@@ -50,11 +54,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemCauTraLoiClick {
+public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemCauTraLoiClick, OnUserEarnedRewardListener {
     ArrayList<String> listcauhoi;
     ArrayList<String> listdapan;
     ArrayList<String> myAnswer;
@@ -67,7 +68,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
     RecyclerView ochu,cautraloi;
     CauHoi cauHoi;
     TextView ruby,sttcauhoi;
-    ImageView chiase,help;
+    ImageView shop,back,help;
     LinearLayout lele;
     MediaPlayer mediaPlayer,mediaPlayer2;
 
@@ -93,7 +94,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         cautraloi = findViewById(R.id.cautraloi);
         csdl = new CSDL(ManChoi.this);
         lele=findViewById(R.id.lele);
-        chiase=findViewById(R.id.chiase);
+        shop=findViewById(R.id.shop);
         help=findViewById(R.id.trogiup);
         adContainerView = findViewById(R.id.layoutAd);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -144,25 +145,121 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             @Override
             public void onClick(View view) {
                 mediaPlayer2.start();
+                showDialogTroGiup();
                 //nếu ng chơi có ít nhất 50 kim cương
+
+
+            }
+        });
+        shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer2.start();
+                showDialogShop();
+            }
+        });
+        LoadCauHoi();
+    }
+    TextView tien;
+    private void showDialogShop() {
+        Dialog dialog=new Dialog(ManChoi.this, android.R.style.Theme_Dialog);
+        dialog.setContentView(R.layout.cuahang);
+        tien=dialog.findViewById(R.id.tien);
+        ImageView video_ruby=dialog.findViewById(R.id.video_ruby);
+        Button ruby_20k=dialog.findViewById(R.id.ruby_20k);
+        Button ruby_50k=dialog.findViewById(R.id.ruby_50k);
+        Button ruby_100k=dialog.findViewById(R.id.ruby_100k);
+        TextView cham=dialog.findViewById(R.id.cham);
+        Animation blink=AnimationUtils.loadAnimation(ManChoi.this,R.anim.blink2);
+        cham.setAnimation(blink);
+        cham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        tien.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
+        video_ruby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(rewardedInterstitialAd != null) {
+                    rewardedInterstitialAd.show((Activity) ManChoi.this,ManChoi.this);
+                }
+
+            }
+        });
+
+        dialog.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        dialog.show();
+    }
+
+    private void showDialogTroGiup() {
+        Dialog dialog=new Dialog(ManChoi.this, android.R.style.Theme_Dialog);
+        dialog.setContentView(R.layout.dialog_trogiup);
+        Button xacnhan=dialog.findViewById(R.id.xacnhan);
+        Button tuchoi=dialog.findViewById(R.id.huy);
+        RelativeLayout nenchiase=dialog.findViewById(R.id.nenchiase);
+        TextView cham=dialog.findViewById(R.id.cham);
+        Animation blink= AnimationUtils.loadAnimation(ManChoi.this,R.anim.blink2);
+        cham.setAnimation(blink);
+
+        cham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        nenchiase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer2.start();
+                Bitmap b=takescreenshotOfRootView(lele);
+                File savedFile = saveBitmapToFile(b);
+                if (savedFile != null) {
+                    Toast.makeText(ManChoi.this, "Đã chụp màn hình để chia sẻ", Toast.LENGTH_SHORT).show();
+                    try {
+                        savedFile.setReadable(true,false);
+
+                        //Đây là hành động của Intent được sử dụng để chia sẻ nội dung.
+                        // Trong trường hợp này, nó được sử dụng để chia sẻ một file ảnh.
+                        final Intent intent=new Intent(Intent.ACTION_SEND);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        //Đây là cách để nhận một Uri cho một file từ một FileProvider.
+                        // Điều này cần thiết khi chia sẻ file với ứng dụng khác trên Android Nougat (API level 24) trở lên.
+                        Uri uri= FileProvider.getUriForFile(getApplicationContext(),getApplication().getPackageName()+".provider",savedFile);
+                        intent.putExtra(Intent.EXTRA_STREAM,uri);
+
+                        //ây là cờ được sử dụng để cho phép ứng dụng mà Intent được gửi tới đọc dữ liệu từ Uri đã được cung cấp.
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        intent.setType("image/*");
+                        dialog.dismiss();
+
+                        startActivity(Intent.createChooser(intent,"Share to..."));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
+                } else {
+                    dialog.dismiss();
+                    Toast.makeText(ManChoi.this, "Failed to save screenshot", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        tuchoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        xacnhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 if(csdl.HienRuby(ManChoi.this)>=50){
-                    // hiển thị 1 alert dialog
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ManChoi.this);
-                    builder.setTitle("Xác nhận");
-                    builder.setMessage("Gợi ý 1 ô chữ cần 50 kim cương, bạn có chắc chắn không?");
-                    //không thể đóng bằng back
-                    builder.setCancelable(false);
-                    builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Xử lý khi người dùng nhấn nút hủy
-                            dialog.dismiss(); // Đóng dialog
-                        }
-                    });
-                    // Nút xác nhận
-                    builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+
+
                             // Xử lý khi người dùng nhấn nút xác nhận
                             // Thêm code xử lý ở đây
                             String dapan1="";
@@ -199,59 +296,28 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
                                 }
 
                             }
+                            dialog.dismiss();
                             HienTroGiup();
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+
                 }
                 else {
                     Toast.makeText(ManChoi.this, "Bạn không đủ 50 kim cương", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-        chiase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mediaPlayer2.start();
-                Bitmap b=takescreenshotOfRootView(lele);
-                File savedFile = saveBitmapToFile(b);
-                if (savedFile != null) {
-                    Toast.makeText(ManChoi.this, "Đã chụp màn hình để chia sẻ", Toast.LENGTH_SHORT).show();
-                    try {
-                        savedFile.setReadable(true,false);
+        dialog.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-                        //Đây là hành động của Intent được sử dụng để chia sẻ nội dung.
-                        // Trong trường hợp này, nó được sử dụng để chia sẻ một file ảnh.
-                        final Intent intent=new Intent(Intent.ACTION_SEND);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        dialog.show();
 
-                        //Đây là cách để nhận một Uri cho một file từ một FileProvider.
-                        // Điều này cần thiết khi chia sẻ file với ứng dụng khác trên Android Nougat (API level 24) trở lên.
-                        Uri uri= FileProvider.getUriForFile(getApplicationContext(),getApplication().getPackageName()+".provider",savedFile);
-                        intent.putExtra(Intent.EXTRA_STREAM,uri);
-
-                        //ây là cờ được sử dụng để cho phép ứng dụng mà Intent được gửi tới đọc dữ liệu từ Uri đã được cung cấp.
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        intent.setType("image/*");
-
-                        startActivity(Intent.createChooser(intent,"Share to..."));
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-
-                } else {
-                    Toast.makeText(ManChoi.this, "Failed to save screenshot", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        LoadCauHoi();
     }
+
     @Override
     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
         Toast.makeText(this, "Nhận thưởng thành công", Toast.LENGTH_SHORT).show();
-        csdl.UpdateRuby(ManChoi.this,5);
+        csdl.UpdateRuby(ManChoi.this,25);
+        loadAd();
+        tien.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
         ruby.setText(String.valueOf(String.valueOf(csdl.HienRuby(ManChoi.this))));
     }
 
@@ -611,7 +677,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             }
             else {
 
-                Toast.makeText(this, "Sai đáp án", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "lew lew gà", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -662,7 +728,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             public void onDismiss(DialogInterface dialogInterface) {
 //                 Thực hiện cập nhật CSDL và tải lại trang
                 csdl.Update(ManChoi.this,cauHoi.getId());
-                csdl.UpdateRuby(ManChoi.this,5);
+                csdl.UpdateRuby(ManChoi.this,25);
                 LoadCauHoi();
             }
         });
@@ -688,5 +754,10 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
                 mediaPlayer.start();
             }
         }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

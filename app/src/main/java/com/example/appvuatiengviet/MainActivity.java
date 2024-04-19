@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
     CSDL csdl;
     Button choiNgay,bangXh,thoat,choilai;
-    ImageView shop,setting,chiaSe;
+    ImageView amLuong,setting,chiaSe;
     TextView tien;
     MediaPlayer mediaPlayer,mediaPlayer2;
     static boolean NhacNen ,AmLuong;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         choiNgay = findViewById(R.id.choingay);
         bangXh = findViewById(R.id.bxh);
         thoat = findViewById(R.id.thoat);
-        shop = findViewById(R.id.shop);
         setting = findViewById(R.id.setting);
         chiaSe = findViewById(R.id.chiase);
         tien = findViewById(R.id.tien);
@@ -66,14 +66,6 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer2 = new MediaPlayer();
 
         ktraAmthanh();
-//        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//                mediaPlayer.start();
-//            }
-//        });
-//        mediaPlayer = MediaPlayer.create(MainActivity.this,R.raw.quizstarts);
-//        mediaPlayer.start();
 
         mediaPlayer2 = MediaPlayer.create(MainActivity.this,R.raw.click_003);
 
@@ -99,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                mediaPlayer2.start();
-                showConfirmationDialog();
+                showDialogTroGiup();
             }
         });
         thoat.setOnClickListener(new View.OnClickListener() {
@@ -122,32 +114,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void showConfirmationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Xác nhận");
-        builder.setMessage("Bạn có chắc chắn muốn thực hiện hành động này không?");
 
-        // Nút xác nhận
-        builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+    private void showDialogTroGiup() {
+        Dialog dialog=new Dialog(MainActivity.this, android.R.style.Theme_Dialog);
+        dialog.setContentView(R.layout.dialog_choilai);
+        Button xacnhan=dialog.findViewById(R.id.xacnhan);
+        Button tuchoi=dialog.findViewById(R.id.huy);
+
+        xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Xử lý khi người dùng nhấn nút xác nhận
-                // Thêm code xử lý ở đây
+            public void onClick(View view) {
                 csdl.ChoiLai(MainActivity.this);
+                Toast.makeText(MainActivity.this, "Bạn đã chọn chơi lại từ đầu", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
                 recreate();
             }
         });
-
-        // Nút hủy
-        builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+        tuchoi.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Xử lý khi người dùng nhấn nút hủy
-                dialog.dismiss(); // Đóng dialog
+            public void onClick(View view) {
+                dialog.dismiss();
             }
         });
+        dialog.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-        AlertDialog dialog = builder.create();
         dialog.show();
     }
     private SeekBar volumeSeekBar1,volumeSeekBar2;
@@ -204,11 +195,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(progress!=0){
-                    nhacback12.setImageResource(R.drawable.icon_loa);
+                    nhacback12.setImageResource(R.drawable.nhacnen);
                     NhacNen=true;
                 }
                 else {
-                    nhacback12.setImageResource(R.drawable.icon_tatloa);
+                    nhacback12.setImageResource(R.drawable.matnhacnen);
                     NhacNen=false;
                 }
                 volumn1 = (float) (1 - (Math.log(100 - progress) / Math.log(100)));
@@ -226,15 +217,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+        //tiếng xuân bắc
         volumeSeekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if(progress!=0){
-                    nhacXB12.setImageResource(R.drawable.icon_mic);
+                    nhacXB12.setImageResource(R.drawable.volume);
                     AmLuong=true;
                 }
                 else {
-                    nhacXB12.setImageResource(R.drawable.icon_tatmic);
+                    nhacXB12.setImageResource(R.drawable.matamthanh);
                     AmLuong=false;
                 }
                 volumn2 = (float) (1 - (Math.log(100 - progress) / Math.log(100)));

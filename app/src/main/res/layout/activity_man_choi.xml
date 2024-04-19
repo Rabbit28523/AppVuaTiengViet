@@ -81,7 +81,7 @@
         <ImageView
             android:layout_marginTop="3dp"
             android:layout_marginLeft="20dp"
-            android:id="@+id/chiase"
+            android:id="@+id/shop"
             android:background="@drawable/iconshop"
             android:layout_width="80dp"
             android:layout_height="80dp"/>
