@@ -315,7 +315,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
     @Override
     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
         Toast.makeText(this, "Nhận thưởng thành công", Toast.LENGTH_SHORT).show();
-        csdl.UpdateRuby(ManChoi.this,25);
+        csdl.UpdateRuby(ManChoi.this,10);
         loadAd();
         tien.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
         ruby.setText(String.valueOf(String.valueOf(csdl.HienRuby(ManChoi.this))));
@@ -677,7 +677,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             }
             else {
 
-                Toast.makeText(this, "lew lew gà", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sai đáp án!!!", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -716,6 +716,11 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         dialog.setContentView(R.layout.quaman);
         Button qua=dialog.findViewById(R.id.tieptuc);
         TextView da=dialog.findViewById(R.id.dapan);
+        ImageView as=dialog.findViewById(R.id.anhsang);
+        Animation rotate=AnimationUtils.loadAnimation(ManChoi.this,R.anim.rotate);
+        Animation blink=AnimationUtils.loadAnimation(ManChoi.this,R.anim.blink2);
+        as.setAnimation(blink);
+        as.setAnimation(rotate);
         da.setText(cauHoi.getDapAn());
         qua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -728,7 +733,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             public void onDismiss(DialogInterface dialogInterface) {
 //                 Thực hiện cập nhật CSDL và tải lại trang
                 csdl.Update(ManChoi.this,cauHoi.getId());
-                csdl.UpdateRuby(ManChoi.this,25);
+                csdl.UpdateRuby(ManChoi.this,5);
                 LoadCauHoi();
             }
         });

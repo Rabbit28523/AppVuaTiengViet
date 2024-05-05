@@ -17,7 +17,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/tvname"
-            android:layout_width="240dp"
+            android:layout_width="300dp"
             android:layout_height="66dp"
             android:background="@drawable/tv_doiten"
             android:hint="Nhập tên người chơi"
@@ -26,13 +26,13 @@
         </EditText>
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/tieude2"
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_below="@+id/phi">
         <TextView
-            android:id="@+id/txtten"
+            android:id="@+id/tieude2"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -45,7 +45,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginLeft="-25dp"
-            android:layout_toRightOf="@+id/txtten"
+            android:layout_toRightOf="@+id/tieude2"
             android:background="@drawable/money"/>
     </RelativeLayout>
     <RelativeLayout
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:layout_marginTop="-5dp"
-        android:layout_below="@+id/tieude2">
+        android:layout_marginTop="35dp"
+        android:layout_alignTop="@+id/button">
         <Button
             android:id="@+id/btnname"
             android:layout_width="140dp"
