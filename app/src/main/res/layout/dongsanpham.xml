@@ -30,7 +30,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ruby1">
+            android:src="@drawable/money">
         </ImageView>
     </LinearLayout>
     <ImageButton

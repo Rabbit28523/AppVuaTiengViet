@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -35,7 +36,7 @@ public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCa
     RecyclerView recyclerView_avt,recyclerView_khung;
     ImageView avt;
     TextView hightcore,name,ruby;
-    ImageButton doiten;
+    Button doiten;
     ThongTinNguoiChoi tt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,8 +145,7 @@ public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCa
 
         dialog.setContentView(R.layout.dialog_doiten);
         EditText tvname=dialog.findViewById(R.id.tvname);
-        ImageButton btnXN=dialog.findViewById(R.id.btnname);
-
+        Button btnXN=dialog.findViewById(R.id.btnname);
         TextView cham=dialog.findViewById(R.id.cham);
         Animation blinkk= AnimationUtils.loadAnimation(this,R.anim.blink2);
         cham.setAnimation(blinkk);
@@ -187,8 +187,8 @@ public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCa
 
     private void CapNhatDuLieu() {
         tt=csdl.HienThongTinNhanVat();
-        hightcore.setText("High score: "+ tt.getLevel());
-        name.setText("Name: "+tt.getName());
+        hightcore.setText("Câu hỏi: "+ tt.getLevel());
+        name.setText("Tên: "+tt.getName());
         ruby.setText("Ruby: "+csdl.HienThongTinNhanVat().getRuby());
         String fileAvt = "avt"+String.valueOf(tt.getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
         int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh

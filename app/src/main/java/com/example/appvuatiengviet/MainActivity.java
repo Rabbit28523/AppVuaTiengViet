@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             int ruby = csdl.HienThongTinNhanVat().getRuby();
             tien.setText(ruby+"");
-            hightcore.setText("High score: "+ csdl.HienThongTinNhanVat().getLevel());
+            hightcore.setText("Câu hỏi: "+ csdl.HienThongTinNhanVat().getLevel());
             name.setText(csdl.HienThongTinNhanVat().getName());
             String fileAvt = "avt"+String.valueOf(csdl.HienThongTinNhanVat().getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
             int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
@@ -162,9 +162,8 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_doiten);
         EditText tvname=dialog.findViewById(R.id.tvname);
         Button btnXN=dialog.findViewById(R.id.btnname);
-
         TextView cham=dialog.findViewById(R.id.cham);
-        TextView chuy=dialog.findViewById(R.id.tieude2);
+        RelativeLayout chuy=dialog.findViewById(R.id.tieude2);
         chuy.setVisibility(View.GONE);
         Animation blinkk=AnimationUtils.loadAnimation(this,R.anim.blink2);
         cham.setAnimation(blinkk);
@@ -180,13 +179,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(tvname.getText().toString().trim().equals("")){
-                    Toast.makeText(MainActivity.this, "Bạn phải nhập tên nhân vật", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Bạn phải nhập tên người dùng", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     csdl.TaoNhanVat(tvname.getText().toString());
                     int ruby = csdl.HienThongTinNhanVat().getRuby();
                     tien.setText(ruby+"");
-                    hightcore.setText("High score: "+ csdl.HienThongTinNhanVat().getLevel());
+                    hightcore.setText("Câu hỏi: "+ csdl.HienThongTinNhanVat().getLevel());
                     name.setText(csdl.HienThongTinNhanVat().getName());
                     String fileAvt = "avt"+String.valueOf(csdl.HienThongTinNhanVat().getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
                     int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
@@ -391,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
         if(!csdl.KiemTraNhanVat(this)){
             int ruby = csdl.HienThongTinNhanVat().getRuby();
             tien.setText(ruby+"");
-            hightcore.setText("High score: "+ csdl.HienThongTinNhanVat().getLevel());
+            hightcore.setText("Câu hỏi: "+ csdl.HienThongTinNhanVat().getLevel());
             name.setText(csdl.HienThongTinNhanVat().getName());
             String fileAvt = "avt"+String.valueOf(csdl.HienThongTinNhanVat().getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
             int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
