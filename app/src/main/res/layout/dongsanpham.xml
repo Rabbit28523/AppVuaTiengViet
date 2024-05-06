@@ -39,7 +39,7 @@
         android:id="@+id/btnmua"
         android:layout_marginTop="5dp"
         android:text="Mua"
-        android:background="@drawable/btnmua"
+        android:background="@drawable/btnmuasp"
         android:layout_gravity="center">
     </ImageButton>
 </LinearLayout>
