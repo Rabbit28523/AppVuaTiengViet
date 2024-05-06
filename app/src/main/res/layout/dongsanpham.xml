@@ -30,7 +30,7 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/money">
+            android:src="@drawable/ruby1">
         </ImageView>
     </LinearLayout>
     <ImageButton
@@ -39,7 +39,7 @@
         android:id="@+id/btnmua"
         android:layout_marginTop="5dp"
         android:text="Mua"
-        android:background="@drawable/btnmuasp"
+        android:background="@drawable/btnmua"
         android:layout_gravity="center">
     </ImageButton>
 </LinearLayout>

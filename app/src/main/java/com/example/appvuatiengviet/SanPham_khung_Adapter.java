@@ -49,11 +49,11 @@ public class SanPham_khung_Adapter extends  RecyclerView.Adapter<SanPham_khung_A
             // Xử lý trường hợp không tìm thấy tệp ảnh
         }
         if(list.get(position).getTinhtrang()==0){
-            holder.btnmua.setBackgroundResource(R.drawable.btnmuasp);
+            holder.btnmua.setBackgroundResource(R.drawable.btnmua);
             holder.price.setText(String.valueOf(list.get(position).getPrice()));
         }
         else if(list.get(position).getId()!=tt.getKhung_id()){
-            holder.btnmua.setBackgroundResource(R.drawable.btndungsp);
+            holder.btnmua.setBackgroundResource(R.drawable.btndung);
             holder.linmua.setVisibility(View.GONE);
         }
         else {

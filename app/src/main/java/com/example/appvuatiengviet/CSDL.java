@@ -26,7 +26,7 @@ public class CSDL {
         if (cursor1 != null && cursor1.getCount() > 0) {
         } else {
             db.QueryData("CREATE TABLE IF NOT EXISTS Ruby (id INTEGER PRIMARY KEY AUTOINCREMENT,SoLuong Integer default 24)");
-            db.QueryData("INSERT INTO Ruby  VALUES (null,24)");
+            db.QueryData("INSERT INTO Ruby  VALUES (null,2500)");
         }
 
 
@@ -165,11 +165,11 @@ public class CSDL {
         }
         return cauHoi;
     }
-    public int HienRuby(){
-        Cursor dataCV=db.GetData("SELECT * FROM ThongTinNguoiChoi LIMIT 1");
+    public int HienRuby(Context context){
+        Cursor dataCV=db.GetData("SELECT * FROM Ruby  LIMIT 1");
         int soluong=0;
         if (dataCV != null && dataCV.moveToFirst()) {
-            soluong = dataCV.getInt(2);
+            soluong = dataCV.getInt(1);
 //            Toast.makeText(context, "id: " + dataCV.getInt(1) , Toast.LENGTH_SHORT).show();
 
         }
@@ -180,25 +180,9 @@ public class CSDL {
         db.QueryData("update CauHoi set TinhTrang=1 where id="+id);
     }
     public void UpdateRuby(Context context, int slg){
-        int ruby = HienRuby()+slg;
+
 //        db.QueryData("update Rubys set SoLuong= SoLuong+"+slg);
-        db.QueryData("update ThongTinNguoiChoi set ruby = "+ ruby);
-    }
-    public long getDiamond() {
-        //Lấy bản ghi đầu tiên của cột Diamond trong bảng PlayerInfo
-        Cursor data = db.GetData("SELECT Diamond FROM PlayerInfo LIMIT 1");
-        long diamond = 0;
-        if (data != null && data.moveToFirst()) {
-            diamond = data.getInt(0);
-        }
-        return diamond;
-    }
-    public void setDiamond(long diamond) {
-        db.QueryData("UPDATE PlayerInfo SET Diamond = " + diamond);
-    }
-    //Hàm cộng kim cương cho người chơi
-    public void addDiamond(int diamond) {
-        setDiamond(getDiamond() + diamond);
+        db.QueryData("update ThongTinNguoiChoi set ruby=ruby +"+slg);
     }
     public void UpdateThongTin( int level,int levelMax){
         if(level>levelMax)

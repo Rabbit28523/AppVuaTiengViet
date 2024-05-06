@@ -10,12 +10,15 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer,mediaPlayer2;
     static boolean NhacNen ,AmLuong;
     SharedPreferences prefs;
+    ImageView avt,shop;
+    TextView hightcore,name;
     static float volumn1,volumn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +57,40 @@ public class MainActivity extends AppCompatActivity {
         setting = findViewById(R.id.setting);
         chiaSe = findViewById(R.id.chiase);
         tien = findViewById(R.id.tien);
+        avt=findViewById(R.id.avt1);
+        hightcore=findViewById(R.id.hightCore);
+        name=findViewById(R.id.tvnameNG);
+        shop=findViewById(R.id.shop);
         choilai=findViewById(R.id.choilai);
         csdl = new CSDL(MainActivity.this);
         csdl.TaoCSDL(MainActivity.this);
-        int ruby = csdl.HienRuby(MainActivity.this);
-        tien.setText(ruby+"");
+        csdl.insertNewAvt();
+        csdl.insertNewKhung();
+        if(csdl.KiemTraNhanVat(this)){
+            showDialogDatTen();
+        }
+        else {
+            int ruby = csdl.HienThongTinNhanVat().getRuby();
+            tien.setText(ruby+"");
+            hightcore.setText("High score: "+ csdl.HienThongTinNhanVat().getLevel());
+            name.setText(csdl.HienThongTinNhanVat().getName());
+            String fileAvt = "avt"+String.valueOf(csdl.HienThongTinNhanVat().getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
+            int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
+            String fileKhung = "khung"+String.valueOf(csdl.HienThongTinNhanVat().getKhung_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
+            int resId2 = getResources().getIdentifier(fileKhung, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
+
+            if (resId != 0) {
+                avt.setImageResource(resId); // Thiết lập hình ảnh cho ImageView
+            } else {
+                // Xử lý trường hợp không tìm thấy tệp ảnh
+            }
+            if (resId2 != 0) {
+                avt.setBackgroundResource(resId2); // Thiết lập hình ảnh cho ImageView
+            } else {
+                // Xử lý trường hợp không tìm thấy tệp ảnh
+            }
+        }
+        
         prefs= getSharedPreferences("game", MODE_PRIVATE);
         NhacNen = prefs.getBoolean("isMute", true);
         AmLuong = prefs.getBoolean("isXB", true);
@@ -113,7 +147,72 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,cuahang.class));
+
+            }
+        });
     }
+
+    private void showDialogDatTen() {
+        Dialog dialog = new Dialog(MainActivity.this,android.R.style.Theme_Dialog );
+
+        dialog.setContentView(R.layout.dialog_doiten);
+        EditText tvname=dialog.findViewById(R.id.tvname);
+        Button btnXN=dialog.findViewById(R.id.btnname);
+
+        TextView cham=dialog.findViewById(R.id.cham);
+        TextView chuy=dialog.findViewById(R.id.tieude2);
+        chuy.setVisibility(View.GONE);
+        Animation blinkk=AnimationUtils.loadAnimation(this,R.anim.blink2);
+        cham.setAnimation(blinkk);
+        dialog.setCancelable(false);
+        cham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        cham.setVisibility(View.GONE);
+        btnXN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(tvname.getText().toString().trim().equals("")){
+                    Toast.makeText(MainActivity.this, "Bạn phải nhập tên nhân vật", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    csdl.TaoNhanVat(tvname.getText().toString());
+                    int ruby = csdl.HienThongTinNhanVat().getRuby();
+                    tien.setText(ruby+"");
+                    hightcore.setText("High score: "+ csdl.HienThongTinNhanVat().getLevel());
+                    name.setText(csdl.HienThongTinNhanVat().getName());
+                    String fileAvt = "avt"+String.valueOf(csdl.HienThongTinNhanVat().getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
+                    int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
+                    String fileKhung = "khung"+String.valueOf(csdl.HienThongTinNhanVat().getKhung_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
+                    int resId2 = getResources().getIdentifier(fileKhung, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
+
+                    if (resId != 0) {
+                        avt.setImageResource(resId); // Thiết lập hình ảnh cho ImageView
+                    } else {
+                        // Xử lý trường hợp không tìm thấy tệp ảnh
+                    }
+                    if (resId2 != 0) {
+                        avt.setBackgroundResource(resId2); // Thiết lập hình ảnh cho ImageView
+                    } else {
+                        // Xử lý trường hợp không tìm thấy tệp ảnh
+                    }
+                    dialog.dismiss();
+                    startActivity(new Intent(MainActivity.this, ManChoi.class));
+                }
+            }
+        });
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        dialog.show();
+    }
+
 
     private void showDialogTroGiup() {
         Dialog dialog=new Dialog(MainActivity.this, android.R.style.Theme_Dialog);
@@ -289,7 +388,27 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.start();
             }
         }
-        int ruby = csdl.HienRuby(MainActivity.this);
-        tien.setText(ruby+"");
+        if(!csdl.KiemTraNhanVat(this)){
+            int ruby = csdl.HienThongTinNhanVat().getRuby();
+            tien.setText(ruby+"");
+            hightcore.setText("High score: "+ csdl.HienThongTinNhanVat().getLevel());
+            name.setText(csdl.HienThongTinNhanVat().getName());
+            String fileAvt = "avt"+String.valueOf(csdl.HienThongTinNhanVat().getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
+            int resId = getResources().getIdentifier(fileAvt, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
+            String fileKhung = "khung"+String.valueOf(csdl.HienThongTinNhanVat().getKhung_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
+            int resId2 = getResources().getIdentifier(fileKhung, "drawable", getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh
+
+            if (resId != 0) {
+                avt.setImageResource(resId); // Thiết lập hình ảnh cho ImageView
+            } else {
+                // Xử lý trường hợp không tìm thấy tệp ảnh
+            }
+            if (resId2 != 0) {
+                avt.setBackgroundResource(resId2); // Thiết lập hình ảnh cho ImageView
+            } else {
+                // Xử lý trường hợp không tìm thấy tệp ảnh
+            }
+        }
+
     }
 }

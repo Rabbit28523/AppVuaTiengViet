@@ -15,6 +15,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -70,7 +71,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
     TextView ruby,sttcauhoi;
     ImageView shop,back,help;
     LinearLayout lele;
-    MediaPlayer mediaPlayer,mediaPlayer2;
+    MediaPlayer mediaPlayer,mediaPlayer2,mediaPlayer3;
 
     LinearLayout adContainerView;
     private RewardedInterstitialAd rewardedInterstitialAd;
@@ -128,6 +129,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
 
         mediaPlayer=new MediaPlayer();
         mediaPlayer2=new MediaPlayer();
+        mediaPlayer3=new MediaPlayer();
         mediaPlayer2=MediaPlayer.create(ManChoi.this,R.raw.click_003);
         mediaPlayer2.setVolume(MainActivity.volumn2,MainActivity.volumn2);
         if(MainActivity.NhacNen){
@@ -376,7 +378,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         cauhoi.setText(cauHoi.getTu());
         ruby=findViewById(R.id.ruby);
         sttcauhoi=findViewById(R.id.sttcauhoi);
-        ruby.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
+        ruby.setText(String.valueOf(csdl.HienThongTinNhanVat().getRuby()));
         if(cauHoi.getId()==-1){
             lele.setVisibility(View.GONE);
             Toast.makeText(this, "lll", Toast.LENGTH_SHORT).show();
@@ -428,6 +430,9 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             layoutManager.setJustifyContent(JustifyContent.FLEX_START);
             ochu.setLayoutManager(layoutManager);
             ochu.setAdapter(cauHoiAdapter);
+            mediaPlayer3=MediaPlayer.create(ManChoi.this,R.raw.loaded);
+            mediaPlayer3.setVolume(MainActivity.volumn2,MainActivity.volumn2);
+            mediaPlayer3.start();
 
         }
 
@@ -500,7 +505,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
 
             // trừ 50 kim cương và reload lại
             csdl.UpdateRuby(ManChoi.this,-50);
-            ruby.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
+            ruby.setText(csdl.HienThongTinNhanVat().getRuby()+"");
             KiemTraDapAn();
 
         }
@@ -673,10 +678,22 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
 //                } else {
 //                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
 //                }
-                ShowQuaMan();
+                csdl.UpdateThongTin(cauHoi.getId(),csdl.HienThongTinNhanVat().getLevel());
+                mediaPlayer3=MediaPlayer.create(ManChoi.this,R.raw.congrates_3);
+                mediaPlayer3.setVolume(MainActivity.volumn2,MainActivity.volumn2);
+                mediaPlayer3.start();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Gọi hàm ShowQuaMan() ở đây
+                        ShowQuaMan();
+                    }
+                }, 2000);
             }
             else {
-
+                mediaPlayer3=MediaPlayer.create(ManChoi.this,R.raw.mixkitclickerror1110);
+                mediaPlayer3.setVolume(MainActivity.volumn2,MainActivity.volumn2);
+                mediaPlayer3.start();
                 Toast.makeText(this, "Sai đáp án!!!", Toast.LENGTH_SHORT).show();
             }
 
