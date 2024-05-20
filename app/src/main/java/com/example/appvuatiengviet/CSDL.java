@@ -327,7 +327,6 @@ public class CSDL {
         db.QueryData("Update "+ table +" set tinhtrang = 1 where id="+id);
     }
     public  boolean KiemTraNhanVat(Context context){
-        db.QueryData("drop table if EXISTS ThongTinNguoiChoi");
         Cursor cursor1 = db.GetData("SELECT name FROM sqlite_master WHERE type='table' AND name='ThongTinNguoiChoi'");
         if (cursor1 == null || cursor1.getCount() <= 0) {
 //            db.QueryData("CREATE TABLE IF NOT EXISTS Rubys (id INTEGER PRIMARY KEY AUTOINCREMENT,SoLuong Integer)");

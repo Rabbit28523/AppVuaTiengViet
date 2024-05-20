@@ -319,7 +319,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         Toast.makeText(this, "Nhận thưởng thành công", Toast.LENGTH_SHORT).show();
         csdl.UpdateRuby(ManChoi.this,10);
         loadAd();
-        tien.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
+        tien.setText(String.valueOf(csdl.HienThongTinNhanVat().getRuby()));
         ruby.setText(String.valueOf(String.valueOf(csdl.HienThongTinNhanVat().getRuby())));
     }
 
