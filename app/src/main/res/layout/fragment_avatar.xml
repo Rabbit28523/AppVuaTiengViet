@@ -7,7 +7,6 @@
     tools:context=".FragmentAvatar">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_avatar"
-        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

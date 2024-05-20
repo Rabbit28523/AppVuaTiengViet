@@ -34,7 +34,10 @@ import java.util.ArrayList;
 public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCauTraLoiClick{
 
     static CSDL csdl;
+    SanPham_avt_Adapter adapter_avt;
+    SanPham_khung_Adapter adapter_khung;
     ArrayList<SanPham> dsAVT,dsKhung;
+    RecyclerView recyclerView_avt,recyclerView_khung;
     static ImageView avt;
     static TextView hightcore;
     static TextView name;
@@ -73,6 +76,8 @@ public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCa
         csdl=new CSDL(this);
         tt=csdl.HienThongTinNhanVat();
         CapNhatDuLieu(cuahang.this);
+//        hightcore.setText("Hight core: "+ tt.getLevel());
+//        name.setText("Name: "+tt.getName());
 
         doiten.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +111,7 @@ public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCa
             @Override
             public void onClick(View view) {
                 if(tvname.getText().toString().trim().equals("")){
-                    Toast.makeText(cuahang.this, "Vui lòng nhập tên người chơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(cuahang.this, "Tên nhân vật vẫn giữ nguyên", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if(csdl.HienThongTinNhanVat().getRuby()>=10){
@@ -133,8 +138,8 @@ public class cuahang extends AppCompatActivity implements ItemCauHoiClick,ItemCa
 
     public static void CapNhatDuLieu(Context context) {
         tt=csdl.HienThongTinNhanVat();
-        hightcore.setText("Câu hỏi: "+ tt.getLevel());
-        name.setText("Tên: "+tt.getName());
+        hightcore.setText("High score: "+ tt.getLevel());
+        name.setText("Name: "+tt.getName());
         ruby.setText("Ruby: "+csdl.HienThongTinNhanVat().getRuby());
         String fileAvt = "avt"+String.valueOf(tt.getAvt_id()); // Lấy tên tệp ảnh từ đối tượng baiHat
         int resId = context.getResources().getIdentifier(fileAvt, "drawable", context.getPackageName()); // Tìm ID tài nguyên dựa trên tên tệp ảnh

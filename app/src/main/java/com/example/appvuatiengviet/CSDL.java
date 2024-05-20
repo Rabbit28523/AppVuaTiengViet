@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CSDL {
     DataBase db;
@@ -26,7 +27,7 @@ public class CSDL {
         if (cursor1 != null && cursor1.getCount() > 0) {
         } else {
             db.QueryData("CREATE TABLE IF NOT EXISTS Ruby (id INTEGER PRIMARY KEY AUTOINCREMENT,SoLuong Integer default 24)");
-            db.QueryData("INSERT INTO Ruby  VALUES (null,24)");
+            db.QueryData("INSERT INTO Ruby  VALUES (null,2500)");
         }
 
 
@@ -93,6 +94,139 @@ public class CSDL {
             db.QueryData("CREATE TABLE IF NOT EXISTS khung (id INTEGER PRIMARY KEY AUTOINCREMENT, hinhAnh INTEGER,price INTEGER,tinhtrang INTEGER)");
             db.QueryData("INSERT INTO khung  VALUES (null,'khung1',0,1)");
             db.QueryData("INSERT INTO khung  VALUES (null,'khung2',5,0)");
+        }
+    }
+    public void taoCSDLround2ChinhTa(){
+        Cursor cursor1 = db.GetData("SELECT name FROM sqlite_master WHERE type='table' AND name='LoiChinhTa'");
+        if (cursor1 == null || cursor1.getCount() <= 0) {
+            db.QueryData("CREATE TABLE IF NOT EXISTS LoiChinhTa (id INTEGER PRIMARY KEY AUTOINCREMENT, Tu TEXT, DapAnDung NVARCHAR(100),DapAnSai NVARCHAR(100))");
+
+            String[] TuList = {"bánh ...ày","bơi ...ải","..ầy ..ật","..éo ngoe","... chu","xuôi ... mát mái","...ung công","...ày trông mai đợi","...ãy nảy","...ấu ...iếm","...ở trò","ma ...ơi","thôi ...ao","bạ.. mạng"};
+            String[] dapAnDungList = {"gi","tr","tr","tr","chỉn","chèo","x","r","gi","gi-gi","gi","tr","x","t"};
+            String[] dapAnSaiList = {"d","ch","ch","ch","chỉnh","chiều","s","d","d","gi-d","d","ch","s","c"};
+            // Kiểm tra xem số lượng hình ảnh và câu trả lời có khớp nhau không
+            if (TuList.length != dapAnDungList.length || dapAnDungList.length!= dapAnSaiList.length ||TuList.length!= dapAnSaiList.length) {
+                // Nếu không khớp, bạn có thể xử lý tùy thuộc vào yêu cầu cụ thể của ứng dụng, ví dụ: thông báo cho người dùng.
+                // Ví dụ: Toast.makeText(context, "Số lượng hình ảnh và câu trả lời không khớp nhau.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            // Duyệt qua từng phần tử trong mảng hinhAnhList và dapAnList
+            for (int i = 0; i < dapAnDungList.length; i++) {
+                // Kiểm tra xem dữ liệu đã tồn tại trong cơ sở dữ liệu chưa
+                Cursor cursor = db.GetData("SELECT * FROM LoiChinhTa WHERE Tu = '" + TuList[i] + "' AND DapAnDung = '" + dapAnDungList[i] + "' and DapAnSai = '"+dapAnSaiList[i]+"'");
+                if (cursor == null || cursor.getCount() <= 0) {
+                    // Nếu không tìm thấy dữ liệu tương ứng, thực hiện câu lệnh insert dữ liệu mới vào bảng
+                    db.QueryData("INSERT INTO LoiChinhTa (Tu,DapAnDung,DapAnSai ) VALUES ('" + TuList[i] + "', '" + dapAnDungList[i] + "','"+dapAnSaiList[i]+"')");
+                } else {
+
+                }
+            }
+        }
+    }
+    public List<LoiChinhTa> getLoiCTRound2(int max) {
+        List<LoiChinhTa> cauHoiList = new ArrayList<>();
+        Cursor dataCV = db.GetData("SELECT * FROM LoiChinhTa ORDER BY RANDOM() LIMIT "+max);
+
+        if (dataCV != null && dataCV.moveToFirst()) {
+            do {
+                int id = dataCV.getInt(0);
+                String tu = dataCV.getString(1);
+                String dapAnDung = dataCV.getString(2);
+                String dapAnSai = dataCV.getString(3);
+                LoiChinhTa cauHoi = new LoiChinhTa(id, tu,dapAnDung,dapAnSai);
+                cauHoiList.add(cauHoi);
+            } while (dataCV.moveToNext());
+        } else {
+            for (int i = 0; i < 10; i++) {
+                int id = -1;
+                String hinhAnh = "hinh123";
+                String dapAn = "dapan";
+                LoiChinhTa cauHoi = new LoiChinhTa(id, "tu","dapAnDung","dapAnSai");
+                cauHoiList.add(cauHoi);
+            }
+        }
+
+        if (dataCV != null) {
+            dataCV.close();
+        }
+
+        return cauHoiList;
+    }
+    public List<CaDao> getCauHoiRound2(int max) {
+        List<CaDao> cauHoiList = new ArrayList<>();
+        Cursor dataCV = db.GetData("SELECT * FROM CaDaoTucNgu ORDER BY RANDOM() LIMIT "+max);
+
+        if (dataCV != null && dataCV.moveToFirst()) {
+            do {
+                int id = dataCV.getInt(0);
+                String hinhAnh = dataCV.getString(1);
+                String dapAn = dataCV.getString(2);
+                CaDao cauHoi = new CaDao(id, hinhAnh, dapAn);
+                cauHoiList.add(cauHoi);
+            } while (dataCV.moveToNext());
+        } else {
+            for (int i = 0; i < 10; i++) {
+                int id = -1;
+                String hinhAnh = "hinh123";
+                String dapAn = "dapan";
+                CaDao cauHoi = new CaDao(id, hinhAnh, dapAn);
+                cauHoiList.add(cauHoi);
+            }
+        }
+
+        if (dataCV != null) {
+            dataCV.close();
+        }
+
+        return cauHoiList;
+    }
+    public void taoCSDLround2CaDao(){
+        Cursor cursor1 = db.GetData("SELECT name FROM sqlite_master WHERE type='table' AND name='CaDaoTucNgu'");
+        if (cursor1 == null || cursor1.getCount() <= 0) {
+            db.QueryData("CREATE TABLE IF NOT EXISTS CaDaoTucNgu (id INTEGER PRIMARY KEY AUTOINCREMENT, HinhAnh TEXT, DapAn NVARCHAR(100))");
+
+            String[] hinhAnhList = {"an_khong_noi_co","anh_em_nhu_the_chan_tay","ba_mat_mot_loi","binh_chan_nhu_vai",
+                    "bit_mat_bat_de","boi_beo_ra_bo","but_sa_ga_chet","cai_kho_lo_cai_khon","cam_can_nay_muc",
+                    "cho_treo_meo_day","coc_mo_co_xoi","com_ao_gao_tien","con_sau_lam_rau_noi_canh",
+                    "du_long_du_canh","dung_nui_nay_trong_nui_no","gai_muoi_bay_be_gay_sung_trau",
+                    "hai_ban_tay_moi_vo_thanh_tieng","hoa_thom_danh_ca_cum","ke_cap_gap_ba_gia",
+                    "lay_trung_choi_da","meo_ma_ga_dong","mot_nu_cuoi_bang_muoi_thang_thuoc_bo",
+                    "mot_tien_ga_ba_tien_thoc","nhay_bao_bo","nhay_lo_co","nuoi_ong_tay_ao_nuoi_cao_trong_nha",
+                    "phu_quy_sinh_le_nghia","ruou_vao_loi_ra","rut_day_dong_rung","thoc_gay_banh_xe",
+                    "thung_rong_keu_to","tien_tram_hau_tau","to_gan_lon_mat","tranh_vo_dua_gap_vo_dua",
+                    "troi_nong_chong_khat_troi_mat_chong_doi","trong_danh_xuoi_ken_thoi_nguoc",
+                    "vat_dau_ca_va_dau_tom","ve_duong_cho_huou_chay",};
+
+            // Thêm các câu trả lời khác tương tự ở đây
+            String[] dapAnList = {"ăn không nói có","anh em như thể chân tay","ba mặt một lời","bình chân như vại",
+                    "bịt mắt bắt dê","bới bèo ra bọ","bút sa gà chết","cái khó ló cái khôn","cầm cân nảy mực",
+                    "chó treo mèo đậy","cốc mò cò xơi","cơm áo gạo tiền","con sâu làm rầu nồi canh",
+                    "đủ lông đủ cánh","đứng núi này trông núi nọ","gái mười bảy bẻ gãy sừng trâu",
+                    "hai bàn tay mới vỗ thành tiếng","hoa thơm đánh cả cụm","kẻ cắp gặp bà già",
+                    "lấy trứng chọi đá","mèo mả gà đồng","một nụ cười bằng mười thang thuốc bổ",
+                    "một tiền gà ba tiền thóc","nhảy bao bố","nhảy lò cò","nuôi ong tay áo nuôi cáo trong nhà",
+                    "phú quý sinh lễ nghĩa","rượu vào lời ra","rút dây động rừng","thọc gậy bánh xe",
+                    "thùng rỗng kêu to","tiền trảm hậu tấu","to gan lớn mật","tránh vỏ dưa gặp vỏ dừa",
+                    "trời nóng chóng khát trời mát chóng đói","trống đánh xuôi, kèn thổi ngược",
+                    "vặt đầu cá vá đầu tôm","vẽ đường cho hươu chạy"};
+            // Kiểm tra xem số lượng hình ảnh và câu trả lời có khớp nhau không
+            if (hinhAnhList.length != dapAnList.length) {
+                // Nếu không khớp, bạn có thể xử lý tùy thuộc vào yêu cầu cụ thể của ứng dụng, ví dụ: thông báo cho người dùng.
+                // Ví dụ: Toast.makeText(context, "Số lượng hình ảnh và câu trả lời không khớp nhau.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            // Duyệt qua từng phần tử trong mảng hinhAnhList và dapAnList
+            for (int i = 0; i < hinhAnhList.length; i++) {
+                // Kiểm tra xem dữ liệu đã tồn tại trong cơ sở dữ liệu chưa
+                Cursor cursor = db.GetData("SELECT * FROM CaDaoTucNgu WHERE HinhAnh = '" + hinhAnhList[i] + "' AND DapAn = '" + dapAnList[i] + "'");
+                if (cursor == null || cursor.getCount() <= 0) {
+                    // Nếu không tìm thấy dữ liệu tương ứng, thực hiện câu lệnh insert dữ liệu mới vào bảng
+                    db.QueryData("INSERT INTO CaDaoTucNgu (HinhAnh, DapAn) VALUES ('" + hinhAnhList[i] + "', '" + dapAnList[i] + "')");
+                } else {
+                    // Nếu dữ liệu đã tồn tại, bạn có thể thực hiện các hành động phù hợp, ví dụ: thông báo cho người dùng.
+                    // Ví dụ: Toast.makeText(context, "Dữ liệu đã tồn tại trong cơ sở dữ liệu.", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
     public void insertNewAvt(){
@@ -165,11 +299,11 @@ public class CSDL {
         }
         return cauHoi;
     }
-    public int HienRuby(){
-        Cursor dataCV=db.GetData("SELECT * FROM ThongTinNguoiChoi LIMIT 1");
+    public int HienRuby(Context context){
+        Cursor dataCV=db.GetData("SELECT * FROM Ruby  LIMIT 1");
         int soluong=0;
         if (dataCV != null && dataCV.moveToFirst()) {
-            soluong = dataCV.getInt(2);
+            soluong = dataCV.getInt(1);
 //            Toast.makeText(context, "id: " + dataCV.getInt(1) , Toast.LENGTH_SHORT).show();
 
         }
@@ -180,25 +314,9 @@ public class CSDL {
         db.QueryData("update CauHoi set TinhTrang=1 where id="+id);
     }
     public void UpdateRuby(Context context, int slg){
-        int ruby = HienRuby()+slg;
+
 //        db.QueryData("update Rubys set SoLuong= SoLuong+"+slg);
-        db.QueryData("update ThongTinNguoiChoi set ruby = "+ ruby);
-    }
-    public long getDiamond() {
-        //Lấy bản ghi đầu tiên của cột Diamond trong bảng PlayerInfo
-        Cursor data = db.GetData("SELECT Diamond FROM PlayerInfo LIMIT 1");
-        long diamond = 0;
-        if (data != null && data.moveToFirst()) {
-            diamond = data.getInt(0);
-        }
-        return diamond;
-    }
-    public void setDiamond(long diamond) {
-        db.QueryData("UPDATE PlayerInfo SET Diamond = " + diamond);
-    }
-    //Hàm cộng kim cương cho người chơi
-    public void addDiamond(int diamond) {
-        setDiamond(getDiamond() + diamond);
+        db.QueryData("update ThongTinNguoiChoi set ruby=ruby +"+slg);
     }
     public void UpdateThongTin( int level,int levelMax){
         if(level>levelMax)
@@ -217,7 +335,9 @@ public class CSDL {
         }
         return false;
     }
+
     public void TaoNhanVat(String name){
+
         db.QueryData("CREATE TABLE IF NOT EXISTS ThongTinNguoiChoi (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name value, " +
@@ -225,10 +345,40 @@ public class CSDL {
                 " level integer, " +
                 "avt_ID integer," +
                 " khung_id integer  )");
-        db.QueryData("INSERT INTO ThongTinNguoiChoi  VALUES (null,'" + name+  "', 24,0,1,1)");
+        db.QueryData("INSERT INTO ThongTinNguoiChoi  VALUES (null,'" + name+  "', 250,0,1,1)");
     }
     public void SuaThongTinNhanVat(String name, int avt_ID,int khung_id){
         db.QueryData("Update ThongTinNguoiChoi set name='"+name+"', avt_ID="+avt_ID+", khung_id="+khung_id);
+    }
+    public List<CauHoi> getCauHoiRound1(int max) {
+        List<CauHoi> cauHoiList = new ArrayList<>();
+        Cursor dataCV = db.GetData("SELECT * FROM CauHoi  ORDER BY RANDOM() LIMIT "+max);
+
+        if (dataCV != null && dataCV.moveToFirst()) {
+            do {
+                int id = dataCV.getInt(0);
+                String hinhAnh = dataCV.getString(1);
+                String dapAn = dataCV.getString(2);
+                int tinhTrang = dataCV.getInt(3);
+                CauHoi cauHoi = new CauHoi(id, hinhAnh, dapAn, tinhTrang);
+                cauHoiList.add(cauHoi);
+            } while (dataCV.moveToNext());
+        } else {
+            for (int i = 0; i < 10; i++) {
+                int id = -1;
+                String hinhAnh = "hinh123";
+                String dapAn = "dapan";
+                int tinhTrang = 0;
+                CauHoi cauHoi = new CauHoi(id, hinhAnh, dapAn, tinhTrang);
+                cauHoiList.add(cauHoi);
+            }
+        }
+
+        if (dataCV != null) {
+            dataCV.close();
+        }
+
+        return cauHoiList;
     }
     public ThongTinNguoiChoi HienThongTinNhanVat(){
         Cursor dataCV=db.GetData("SELECT * FROM ThongTinNguoiChoi ");

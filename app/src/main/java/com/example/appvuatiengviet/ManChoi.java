@@ -180,7 +180,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
                 dialog.dismiss();
             }
         });
-        tien.setText(String.valueOf(csdl.HienRuby()));
+        tien.setText(String.valueOf(csdl.HienThongTinNhanVat().getRuby()));
         video_ruby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -259,7 +259,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(csdl.HienRuby()>=50){
+                if(csdl.HienThongTinNhanVat().getRuby()>=50){
 
 
                             // Xử lý khi người dùng nhấn nút xác nhận
@@ -303,7 +303,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
 
                 }
                 else {
-                    Toast.makeText(ManChoi.this, "Bạn không đủ 50 ruby", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManChoi.this, "Bạn không đủ 50 kim cương", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -319,8 +319,8 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         Toast.makeText(this, "Nhận thưởng thành công", Toast.LENGTH_SHORT).show();
         csdl.UpdateRuby(ManChoi.this,10);
         loadAd();
-        tien.setText(String.valueOf(csdl.HienRuby()));
-        ruby.setText(String.valueOf(csdl.HienRuby()));
+        tien.setText(String.valueOf(csdl.HienThongTinNhanVat().getRuby()));
+        ruby.setText(String.valueOf(String.valueOf(csdl.HienThongTinNhanVat().getRuby())));
     }
 
     private AdSize getAdSize() {
@@ -668,6 +668,16 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
             System.out.println("da2: "+dapan2);
             //nếu đáp án câu hỏi và đáp án của người chơi trùng nhau
             if(dapan1.equalsIgnoreCase(dapan2)){
+//                if (mInterstitialAd != null) {
+//                    ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+//                    service.scheduleAtFixedRate(() -> {
+//                        runOnUiThread(() -> {
+//                            mInterstitialAd.show(ManChoi.this);
+//                        });
+//                    }, 1, 1, TimeUnit.SECONDS);
+//                } else {
+//                    Log.d("TAG", "The interstitial ad wasn't ready yet.");
+//                }
                 csdl.UpdateThongTin(cauHoi.getId(),csdl.HienThongTinNhanVat().getLevel());
                 mediaPlayer3=MediaPlayer.create(ManChoi.this,R.raw.congrates_3);
                 mediaPlayer3.setVolume(MainActivity.volumn2,MainActivity.volumn2);

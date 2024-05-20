@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-                        startActivity(new Intent(MainActivity.this,ManChoi.class));
+                        startActivity(new Intent(MainActivity.this,ChonCheDoChoi.class));
                     }
                 });
             }
@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Thay đổi thành URI của liên kết bạn muốn chia sẻ
-        Uri uri = Uri.parse("https://drive.google.com/drive/folders/1t678nXRTm8ozCp1ERJMtOoRwe7Kr3d9r?usp=drive_link");
+        Uri uri = Uri.parse("https://facebook.com");
 
         // Đặt nội dung của Intent thành liên kết
         intent.putExtra(Intent.EXTRA_TEXT, uri.toString());
