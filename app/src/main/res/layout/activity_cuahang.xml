@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/nestedScrollView"
+    android:background="@drawable/backgroud_thongtin"
+    tools:context=".cuahang">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/title"
+            android:background="@drawable/thongtin">
+        </ImageView>
+
+        <LinearLayout
+            android:id="@+id/thongtin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/avt1"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0"
+                android:background="@drawable/khung1"
+                android:padding="20dp"
+                android:src="@drawable/avt1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvnameNG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên người chơi: Rabbit"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/hightCore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Câu hỏi cao nhất: 100"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:id="@+id/linmua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ruby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Ruby: 22"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="3dp"
+                        android:src="@drawable/money" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btndoiten"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Đổi Tên"
+                    android:textColor="@color/black"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:background="@drawable/choingayclick">
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+        <HorizontalScrollView
+            android:layout_below="@+id/thongtin"
+            android:id="@+id/muaruby"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:padding="30dp"
+            android:background="@drawable/backgroud_shop">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/item_ruby_1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10 ruby"
+                        android:textColor="#E6780D"
+                        android:textStyle="bold"
+                        android:textSize="21dp"
+                        android:layout_gravity="center" />
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/iv_shop_watch"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/item_shop_video"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/item_ruby_2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100 ruby"
+                        android:textColor="#E6780D"
+                        android:textStyle="bold"
+                        android:textSize="21dp"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:text="20k"
+                        android:textSize="21dp"
+                        android:textStyle="bold"
+                        android:textColor="#F65430"
+                        android:id="@+id/ruby_20k"
+                        android:background="@drawable/item_but_shop" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/item_ruby_3"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="300 ruby"
+                        android:textColor="#E6780D"
+                        android:textStyle="bold"
+                        android:textSize="21dp"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:text="50k"
+                        android:textSize="21dp"
+                        android:textStyle="bold"
+                        android:textColor="#F65430"
+                        android:id="@+id/ruby_50k"
+                        android:background="@drawable/item_but_shop" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/item_ruby_4"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="800 ruby"
+                        android:textColor="#E6780D"
+                        android:textStyle="bold"
+                        android:textSize="21dp"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:text="100k"
+                        android:textSize="21dp"
+                        android:textStyle="bold"
+                        android:textColor="#F65430"
+                        android:id="@+id/ruby_100k"
+                        android:background="@drawable/item_but_shop" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:id="@+id/vatpham"
+            android:layout_below="@+id/muaruby"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/vatpham">
+        </ImageView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/cohoanh"
+            android:layout_below="@+id/vatpham"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/cohoanh">
+        </ImageView>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_shop_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/cohoanh"
+            android:background="#00000000"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        <com.example.appvuatiengviet.CustomViewPager
+            android:id="@+id/vp_shop_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tl_shop_tablayout" />
+    </RelativeLayout>
+</ScrollView>
