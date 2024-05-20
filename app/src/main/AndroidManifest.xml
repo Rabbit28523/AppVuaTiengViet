@@ -21,9 +21,9 @@
         <activity
             android:name=".round2_loichinhta"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".GameShowRound2"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".GameShowRound2"
+            android:exported="false" />
         <activity
             android:name=".GameShowRound1"
             android:exported="false" />
@@ -42,7 +42,7 @@
             android:name=".ManChoi"
             android:exported="false" />
         <activity
-            android:name=".GameShowRound2"
+            android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

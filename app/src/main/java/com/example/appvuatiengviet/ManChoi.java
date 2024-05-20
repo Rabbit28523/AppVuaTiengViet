@@ -180,7 +180,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
                 dialog.dismiss();
             }
         });
-        tien.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
+        tien.setText(String.valueOf(csdl.HienThongTinNhanVat().getRuby()));
         video_ruby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -259,7 +259,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         xacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(csdl.HienRuby(ManChoi.this)>=50){
+                if(csdl.HienThongTinNhanVat().getRuby()>=50){
 
 
                             // Xử lý khi người dùng nhấn nút xác nhận
@@ -320,7 +320,7 @@ public class ManChoi extends AppCompatActivity implements ItemCauHoiClick, ItemC
         csdl.UpdateRuby(ManChoi.this,10);
         loadAd();
         tien.setText(String.valueOf(csdl.HienRuby(ManChoi.this)));
-        ruby.setText(String.valueOf(String.valueOf(csdl.HienRuby(ManChoi.this))));
+        ruby.setText(String.valueOf(String.valueOf(csdl.HienThongTinNhanVat().getRuby())));
     }
 
     private AdSize getAdSize() {

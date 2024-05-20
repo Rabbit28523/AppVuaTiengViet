@@ -327,6 +327,7 @@ public class CSDL {
         db.QueryData("Update "+ table +" set tinhtrang = 1 where id="+id);
     }
     public  boolean KiemTraNhanVat(Context context){
+        db.QueryData("drop table if EXISTS ThongTinNguoiChoi");
         Cursor cursor1 = db.GetData("SELECT name FROM sqlite_master WHERE type='table' AND name='ThongTinNguoiChoi'");
         if (cursor1 == null || cursor1.getCount() <= 0) {
 //            db.QueryData("CREATE TABLE IF NOT EXISTS Rubys (id INTEGER PRIMARY KEY AUTOINCREMENT,SoLuong Integer)");
@@ -337,6 +338,7 @@ public class CSDL {
     }
 
     public void TaoNhanVat(String name){
+
         db.QueryData("CREATE TABLE IF NOT EXISTS ThongTinNguoiChoi (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name value, " +
@@ -344,7 +346,7 @@ public class CSDL {
                 " level integer, " +
                 "avt_ID integer," +
                 " khung_id integer  )");
-        db.QueryData("INSERT INTO ThongTinNguoiChoi  VALUES (null,'" + name+  "', 24,0,1,1)");
+        db.QueryData("INSERT INTO ThongTinNguoiChoi  VALUES (null,'" + name+  "', 250,0,1,1)");
     }
     public void SuaThongTinNhanVat(String name, int avt_ID,int khung_id){
         db.QueryData("Update ThongTinNguoiChoi set name='"+name+"', avt_ID="+avt_ID+", khung_id="+khung_id);
