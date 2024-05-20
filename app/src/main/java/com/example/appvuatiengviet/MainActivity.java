@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-                        startActivity(new Intent(MainActivity.this,ManChoi.class));
+                        startActivity(new Intent(MainActivity.this,ChonCheDoChoi.class));
                     }
                 });
             }
