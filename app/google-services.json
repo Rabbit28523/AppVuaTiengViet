@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "972709463386",
+    "firebase_url": "https://doan3-19fd8-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "doan3-19fd8",
+    "storage_bucket": "doan3-19fd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972709463386:android:cccae36156b92312071f63",
+        "android_client_info": {
+          "package_name": "com.vtv.appvuatiengviet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972709463386-o82fhl1jg9fdbrcn983htqvdh8ib9ddv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vtv.appvuatiengviet",
+            "certificate_hash": "61572d13d374391fd959f22492235839f275f3b9"
+          }
+        },
+        {
+          "client_id": "972709463386-llrf32p1t1iqp16mdbrtc83r5mpgtg4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeJf_sDWmpKdo1xcsCDrghgdoc82XEkCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972709463386-llrf32p1t1iqp16mdbrtc83r5mpgtg4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

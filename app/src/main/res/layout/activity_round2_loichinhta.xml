@@ -11,29 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/nenmanchoi">
+        android:background="@drawable/nenmanchoi2_1">
         <TextView
-            android:layout_width="90dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:id="@+id/level"
-            android:paddingTop="7dp"
-            android:textStyle="bold"
-            android:textColor="#F44336"
-            android:layout_marginLeft="30dp"
-            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="-70dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/backr2"/>
+            android:layout_marginTop="10dp"
+            android:background="@drawable/iconback"/>
         <LinearLayout
-            android:background="@drawable/khungtien"
-            android:layout_marginLeft="250dp"
-            android:layout_width="160dp"
+            android:background="@drawable/khungthoigian"
+            android:layout_marginLeft="280dp"
+            android:layout_width="130dp"
             android:layout_height="70dp"
             android:gravity="center"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mảnh 1"
@@ -66,6 +60,7 @@
                 android:textSize="25dp"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
@@ -73,34 +68,34 @@
             android:weightSum="2">
             <TextView
                 android:layout_marginTop="3dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:text="Mảnh 1"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:id="@+id/dap1"
-                android:background="@drawable/khungtien"
+                android:background="@drawable/khungchinhta"
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:textColor="#FFC107"/>
             <TextView
                 android:layout_marginTop="3dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:text="Mảnh 1"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:id="@+id/dap2"
-                android:background="@drawable/khungtien"
+                android:background="@drawable/khungchinhta"
                 android:textStyle="bold"
                 android:textSize="25dp"
                 android:textColor="#FFC107"/>
         </LinearLayout>
-
-
-
     </LinearLayout>
     <LinearLayout
         android:layout_alignParentBottom="true"

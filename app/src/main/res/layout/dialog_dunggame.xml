@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:background="@drawable/thongbao">
+    android:layout_height="340dp"
+    android:background="@drawable/nen_trogiup">
     <ImageView
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="100dp"
-        android:src="@drawable/dungcuocchoi"
+        android:src="@drawable/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="150dp"
         android:id="@+id/title">
     </ImageView>
     <LinearLayout
@@ -20,20 +20,29 @@
         android:layout_centerHorizontal="true"
         android:weightSum="2">
         <Button
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:id="@+id/chapnhan"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/tuchoi"
             android:layout_weight="1"
-            android:background="@drawable/btnchapnhan">
+            android:text="Từ chối"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textSize="19dp"
+            android:textColor="@color/black"
+            android:background="@drawable/butthoatlick">
         </Button>
         <Button
-
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:id="@+id/tuchoi"
-            android:layout_marginLeft="5dp"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:id="@+id/chapnhan"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:background="@drawable/btntuchoi">
+            android:text="Chấp nhận"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textSize="19dp"
+            android:textColor="@color/black"
+            android:background="@drawable/choingayclick">
         </Button>
     </LinearLayout>
 
