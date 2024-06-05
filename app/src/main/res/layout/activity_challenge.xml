@@ -14,11 +14,12 @@
       android:layout_weight="40">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:src="@drawable/iconshop" />
+        android:src="@drawable/ttdoikhang"
+        android:layout_marginBottom="20dp"/>
   </RelativeLayout>
   <LinearLayout
       android:layout_width="match_parent"
@@ -26,32 +27,41 @@
       android:layout_weight="60"
       android:orientation="vertical"
       android:weightSum="100">
-    <ImageView
+    <Button
         android:id="@+id/btn_challenge_find_match"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
         android:padding="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/btnmua"
-        android:background="@color/transparent"/>
-    <ImageView
+        android:text="Chơi Ngay"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textSize="21dp"
+        android:textColor="@color/black"
+        android:background="@drawable/choingayclick"/>
+    <Button
         android:id="@+id/btn_challenge_create_room"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
         android:padding="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/btndung"
-        android:background="@color/transparent"/>
-    <ImageButton
+        android:text="Tạo phòng"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textSize="21dp"
+        android:textColor="@color/black"
+        android:background="@drawable/choingayclick"/>
+    <Button
         android:id="@+id/btn_challenge_find_room"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
         android:padding="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/btnmua"
-        android:background="@color/transparent"/>
+        android:text="Tìm phòng"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textSize="21dp"
+        android:textColor="@color/black"
+        android:background="@drawable/butbxhlick"/>
   </LinearLayout>
 </LinearLayout>
