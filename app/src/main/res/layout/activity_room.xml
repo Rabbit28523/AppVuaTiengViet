@@ -6,26 +6,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RoomActivity"
-    android:gravity="center"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:background="@drawable/quaman">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="40">
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/idphong1">
+
         <TextView
             android:id="@+id/tv_room_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:padding="5dp"
+            android:layout_marginTop="45dp"
             android:shadowColor="#16F5FF"
-            android:shadowDx="0.0"
-            android:shadowDy="0.0"
-            android:shadowRadius="16"
-            android:text="Mã phòng: 982357"
+            android:text="ID: 982357"
             android:textAlignment="center"
-            android:textColor="#16F5FF"
-            android:textSize="32sp"/>
+            android:textColor="#972805"
+            android:textSize="32sp"
+            android:textStyle="italic" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -35,20 +34,19 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
+        android:layout_height="400dp"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:layout_marginTop="120dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="230dp"
             android:orientation="horizontal"
-            android:layout_weight="50"
             android:weightSum="100">
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="40">
+                android:layout_height="200dp"
+                android:layout_weight="40"
+                android:background="@drawable/khungavv">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -72,19 +70,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/iv_room_p1_avatar"
+
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="-20dp"
                         android:ellipsize="end"
-                        android:maxEms="5"
-                        android:maxLines="1"
-                        android:padding="5dp"
-                        android:shadowColor="#16F5FF"
-                        android:shadowDx="0.0"
-                        android:shadowDy="0.0"
-                        android:shadowRadius="16"
                         android:text="Foxie2003"
                         android:textAlignment="center"
-                        android:textColor="#16F5FF"
+                        android:textColor="#972805"
                         android:textSize="20sp" />
                 </RelativeLayout>
                 <ImageView
@@ -92,24 +83,19 @@
                     android:layout_height="match_parent"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
-                    android:background="@color/transparent"/>
+                    android:background="@color/transparent" />
+
                 <TextView
                     android:id="@+id/iv_room_p1_ready"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:ellipsize="end"
-                    android:maxEms="5"
-                    android:maxLines="1"
-                    android:padding="5dp"
-                    android:shadowColor="#16F5FF"
-                    android:shadowDx="0.0"
-                    android:shadowDy="0.0"
+                    android:layout_marginTop="50dp"
                     android:shadowRadius="16"
                     android:text="Sẵn sàng"
                     android:textAlignment="center"
-                    android:textColor="#16F5FF"
-                    android:textSize="14sp" />
+                    android:textColor="#972805"
+                    android:textSize="15sp" />
                 <ImageView
                     android:id="@+id/iv_room_p1_kick"
                     android:layout_width="match_parent"
@@ -121,19 +107,21 @@
             </RelativeLayout>
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="230dp"
                 android:layout_weight="20"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:background="@color/transparent"/>
+                android:background="@color/transparent"
+                android:src="@drawable/khungvs"/>
             <RelativeLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:layout_weight="40">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="30dp">
+                    android:padding="30dp"
+                    android:background="@drawable/khungavv">
                     <ImageView
                         android:id="@+id/iv_room_p2_avatar"
                         android:layout_width="match_parent"
@@ -154,42 +142,30 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/iv_room_p2_avatar"
                         android:layout_centerInParent="true"
-                        android:layout_marginTop="-20dp"
                         android:ellipsize="end"
-                        android:maxEms="5"
-                        android:maxLines="1"
-                        android:padding="5dp"
-                        android:shadowColor="#16F5FF"
-                        android:shadowDx="0.0"
-                        android:shadowDy="0.0"
-                        android:shadowRadius="16"
+                        android:textColor="#972805"
                         android:text="Foxie2003"
                         android:textAlignment="center"
-                        android:textColor="#16F5FF"
                         android:textSize="20sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:padding="5dp"
+                        android:scaleType="fitCenter" />
                 </RelativeLayout>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:scaleType="fitCenter"
-                    android:background="@color/transparent"/>
+
                 <TextView
                     android:id="@+id/iv_room_p2_ready"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:ellipsize="end"
-                    android:maxEms="5"
-                    android:maxLines="1"
-                    android:padding="5dp"
-                    android:shadowColor="#16F5FF"
-                    android:shadowDx="0.0"
-                    android:shadowDy="0.0"
+                    android:layout_centerInParent="true"
                     android:shadowRadius="16"
                     android:text="Sẵn sàng"
                     android:textAlignment="center"
-                    android:textColor="#16F5FF"
+                    android:textColor="#972805"
                     android:textSize="14sp" />
                 <ImageView
                     android:id="@+id/iv_room_p2_kick"
@@ -201,38 +177,45 @@
                     android:src="@drawable/btnback"/>
             </RelativeLayout>
         </LinearLayout>
-        <ImageView
+        <Button
             android:id="@+id/iv_room_ready"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:layout_weight="15"
-            android:src="@drawable/btnchapnhan"/>
-        <ImageView
+            android:background="@drawable/butchoingayclick"
+            android:text="Sẵn sàng"
+            android:textAllCaps="false"
+            android:textColor="@color/black"/>
+        <Button
             android:id="@+id/iv_room_cancel_ready"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:layout_weight="15"
-            android:src="@drawable/btnback"/>
-        <ImageView
+            android:background="@drawable/butchoingayclick"
+            android:text="Hủy"
+            android:textAllCaps="false"
+            android:textColor="@color/black"/>
+        <Button
             android:id="@+id/iv_room_start"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:layout_weight="15"
-            android:src="@drawable/btnchoilai"/>
-        <ImageView
+            android:text="Bắt đầu"
+            android:textAllCaps="false"
+            android:background="@drawable/butchoingayclick"
+            android:textColor="@color/black"/>
+        <Button
             android:id="@+id/iv_room_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:layout_weight="10"
-            android:src="@drawable/btnback"/>
+            android:text="Thoát"
+            android:textAllCaps="false"
+            android:background="@drawable/butchoingayclick"
+            android:textColor="@color/black"/>
     </LinearLayout>
 </LinearLayout>
