@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/menuchinh"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="com.vtv.vuatiengviet.MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -95,7 +95,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:text="Chơi Lại"
+        android:text="Đối kháng"
         android:textStyle="bold"
         android:textAllCaps="false"
         android:textSize="21dp"
@@ -131,6 +131,12 @@
         android:layout_marginTop="100dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/login"
+            android:background="@drawable/iconshop">
+        </androidx.appcompat.widget.AppCompatButton>
         <ImageView
             android:id="@+id/shop"
             android:background="@drawable/iconshop"

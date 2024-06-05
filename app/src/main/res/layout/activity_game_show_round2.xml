@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/nenmanchoi2"
     android:id="@+id/deme"
-    tools:context=".GameShowRound2">
+    tools:context="com.vtv.vuatiengviet.GameShowRound2">
 
     <LinearLayout
         android:layout_width="match_parent"

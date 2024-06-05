@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/nestedScrollView"
     android:background="@drawable/backgroud_thongtin"
-    tools:context=".cuahang">
+    tools:context="com.vtv.vuatiengviet.cuahang">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -256,7 +256,7 @@
             android:background="#00000000"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-        <com.vtv.appvuatiengviet.CustomViewPager
+        <com.vtv.vuatiengviet.CustomViewPager
             android:id="@+id/vp_shop_viewpager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

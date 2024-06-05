@@ -8,17 +8,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:972709463386:android:cccae36156b92312071f63",
+        "mobilesdk_app_id": "1:972709463386:android:90f1c942acc89a9b071f63",
         "android_client_info": {
-          "package_name": "com.vtv.appvuatiengviet"
+          "package_name": "com.vtv.vuatiengviet"
         }
       },
       "oauth_client": [
         {
-          "client_id": "972709463386-o82fhl1jg9fdbrcn983htqvdh8ib9ddv.apps.googleusercontent.com",
+          "client_id": "972709463386-4rdnddappvc86ahhs81djocchnma6mu4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.vtv.appvuatiengviet",
+            "package_name": "com.vtv.vuatiengviet",
+            "certificate_hash": "4d8cb9e44c1eafb1853bc128a8a0e90ed00820bc"
+          }
+        },
+        {
+          "client_id": "972709463386-o8if01f317mujh2f3cosfjt8k31ht6bp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vtv.vuatiengviet",
             "certificate_hash": "61572d13d374391fd959f22492235839f275f3b9"
           }
         },
