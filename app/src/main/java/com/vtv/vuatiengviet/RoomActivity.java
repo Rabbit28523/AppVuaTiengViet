@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,8 @@ public class RoomActivity extends AppCompatActivity {
     private CSDL database;
     private String userId, roomId;
     private Room room;
-    private ImageView ivP1Avatar, ivP2Avatar, ivReady, ivCancelReady, ivStart, ivP1Kick, ivP2Kick, ivExit;
+    private ImageView ivP1Avatar, ivP2Avatar,ivP1Kick, ivP2Kick;
+    private Button ivReady, ivCancelReady, ivStart, ivExit;
     private TextView tvRoomId, tvP1Name, tvP2Name, tvP1Ready, tvP2Ready;
     private ValueEventListener valueEventListener;
     private DatabaseReference roomRef;
@@ -126,7 +128,7 @@ public class RoomActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
     }
     public void listenToRoomUpdates(String roomId) {
-        Toast.makeText(this, "Data change", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Data change", Toast.LENGTH_SHORT).show();
         roomRef = FirebaseDatabase.getInstance().getReference().child("rooms").child(roomId);
         valueEventListener = new ValueEventListener() {
             @Override
@@ -134,7 +136,7 @@ public class RoomActivity extends AppCompatActivity {
                 room = dataSnapshot.getValue(Room.class);
                 if (room != null) {
                     //Hiển thị id phòng
-                    tvRoomId.setText("Mã phòng: " + roomId);
+                    tvRoomId.setText("ID: " + roomId);
                     //Hiển thị thông tin người chơi
                     showPlayer1Info(RoomActivity.this, room.player1Id);
                     showPlayer2Info(RoomActivity.this, room.player2Id);

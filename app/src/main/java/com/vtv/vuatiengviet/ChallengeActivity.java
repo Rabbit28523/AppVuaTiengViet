@@ -101,16 +101,26 @@ public class ChallengeActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
     }
     private void showEnterRoomDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_enter_room, null);
-        builder.setView(dialogView);
+        Dialog dialog = new Dialog(ChallengeActivity.this, android.R.style.Theme_Dialog);
 
-        EditText roomNumberEditText = dialogView.findViewById(R.id.roomNumberEditText);
-        Button confirmButton = dialogView.findViewById(R.id.confirmButton);
+// Set the custom dialog layout
+        dialog.setContentView(R.layout.dialog_enter_room);
 
-        AlertDialog dialog = builder.create();
+// Initialize views from the dialog layout
+        TextView cham = dialog.findViewById(R.id.cham);
+        EditText roomNumberEditText = dialog.findViewById(R.id.roomNumberEditText);
+        Button confirmButton = dialog.findViewById(R.id.confirmButton);
+        Animation blinkk = AnimationUtils.loadAnimation(this, R.anim.blink2);
+        cham.setAnimation(blinkk);
+// Close dialog on clicking 'cham' TextView
+        cham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
+// Handle confirm button click
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +135,18 @@ public class ChallengeActivity extends AppCompatActivity {
                 }
             }
         });
+
+// Set the dialog background to transparent
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+// Set system UI visibility for immersive experience
+        dialog.getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        );
+
+// Show the dialog
         dialog.show();
+
     }
     public boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

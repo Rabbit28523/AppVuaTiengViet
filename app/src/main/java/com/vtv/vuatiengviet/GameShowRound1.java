@@ -230,7 +230,7 @@ public class GameShowRound1 extends AppCompatActivity implements ItemCauHoiClick
         if(isRunning){
             ketthuc.setImageResource(R.drawable.ketthuc);
             diemtv.setText("Điểm số: "+ diem +"/10");
-            if(diem>=5){
+            if(diem>=2){
                 choi.setImageResource(R.drawable.tvtiep);
                 btnHuy.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -280,7 +280,7 @@ public class GameShowRound1 extends AppCompatActivity implements ItemCauHoiClick
         else {
             ketthuc.setImageResource(R.drawable.hetgio);
             diemtv.setText("Điểm của bạn: "+ diem +"/10");
-            if(diem>=5){
+            if(diem>=2){
                 choi.setImageResource(R.drawable.tvtiep);
                 btnHuy.setOnClickListener(new View.OnClickListener() {
                     @Override
