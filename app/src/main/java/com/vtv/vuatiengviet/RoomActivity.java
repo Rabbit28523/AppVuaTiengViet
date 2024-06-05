@@ -174,12 +174,12 @@ public class RoomActivity extends AppCompatActivity {
                     }
                     if (room.status.equals("ongoing")) {
                         roomRef.removeEventListener(valueEventListener);
-//                        Intent intent = new Intent(RoomActivity.this, ChallengeGameActivity.class);
-//                        intent.putExtra("userId", userId);
-//                        intent.putExtra("roomId", roomId);
-//                        startActivity(intent);
-//                        finish();
-                        Toast.makeText(RoomActivity.this, "Chuyển đến màn hình chơi game", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RoomActivity.this, dienbiengame.class);
+                        intent.putExtra("userId", userId);
+                        intent.putExtra("roomId", roomId);
+                        startActivity(intent);
+                        finish();
+//                        Toast.makeText(RoomActivity.this, "Chuyển đến màn hình chơi game", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
@@ -403,12 +403,12 @@ public class RoomActivity extends AppCompatActivity {
                         if (room != null) {
                             roomRef.child("status").setValue("ongoing");
                             roomRef.removeEventListener(valueEventListener);
-//                            Intent intent = new Intent(RoomActivity.this, ChallengeGameActivity.class);
-//                            intent.putExtra("userId", userId);
-//                            intent.putExtra("roomId", roomId);
-//                            startActivity(intent);
-//                            finish();
-                            Toast.makeText(RoomActivity.this, "Chuyển đến màn hình chơi game", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RoomActivity.this, dienbiengame.class);
+                            intent.putExtra("userId", userId);
+                            intent.putExtra("roomId", roomId);
+                            startActivity(intent);
+                            finish();
+//                            Toast.makeText(RoomActivity.this, "Chuyển đến màn hình chơi game", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         // Xử lý trường hợp dataSnapshot không tồn tại

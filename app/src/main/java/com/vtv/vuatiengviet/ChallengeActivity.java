@@ -48,7 +48,7 @@ public class ChallengeActivity extends AppCompatActivity {
     private CSDL database;
     private String userId, roomId;
     private Room room;
-    private ImageView btnFindMatch, btnCreateRoom, btnFindRoom;
+    private Button btnFindMatch, btnCreateRoom, btnFindRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
